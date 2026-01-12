@@ -1,12 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Projekt Portfólió - Munkák Nyilvántartása</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSZC Gépészeti Technikum - Digitális Tankönyvtár</title>
     <style>
         * {
             margin: 0;
@@ -15,479 +12,775 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
-            color: #e8eaf6;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        /* Animated background particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(139, 92, 246, 0.1);
-            border-radius: 50%;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-100px) translateX(50px); }
-            50% { transform: translateY(-50px) translateX(100px); }
-            75% { transform: translateY(-150px) translateX(-50px); }
-        }
-
-        /* Header Section */
-        .header-section {
+            display: flex;
             position: relative;
-            z-index: 1;
-            padding: 80px 0 60px;
-            text-align: center;
-        }
-
-        .header-section h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 15px;
-            animation: fadeInDown 1s ease;
-        }
-
-        .header-section p {
-            font-size: 1.2rem;
-            color: #b0b8d4;
-            animation: fadeInUp 1s ease 0.3s both;
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Container */
-        .container-custom {
-            position: relative;
-            z-index: 1;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px 80px;
-        }
-
-        /* CV Button */
-        .cv-button-container {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .btn-cv {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            padding: 15px 40px;
-            border-radius: 15px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: white;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-        }
-
-        .btn-cv:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
-        }
-
-        /* Grid Layout */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        /* Card Styles */
-        .project-card {
-            background: rgba(30, 35, 60, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 20px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            animation: fadeIn 0.6s ease both;
         }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(139, 92, 246, 0.6);
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                background-image: url("https://mateszalka.cms.szc.edir.hu/uploads/large_Gepeszeti_iskolakep_aac4144917.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                filter: blur(6px) brightness(0.8);
+                z-index: -1;
+                will-change: filter;
             }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
 
-        .card-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover .card-image {
-            transform: scale(1.1);
-        }
-
-        .card-content {
-            padding: 25px;
-        }
-
-        .project-number {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .sidebar {
+            width: 260px;
+            background-color: #4a4a4a;
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .project-title {
-            color: #e8eaf6;
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: #8b5cf6;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 10px 20px;
-            border: 2px solid #8b5cf6;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .project-link:hover {
-            background: #8b5cf6;
-            color: white;
-            transform: translateX(5px);
-        }
-
-        /* Modal Styles */
-        .modal-content {
-            background: linear-gradient(135deg, #1e2347 0%, #2d3561 100%);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 20px;
-            color: #e8eaf6;
-        }
-
-        .modal-header {
-            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-            padding: 25px;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal-body {
-            padding: 25px;
-            max-height: 70vh;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            position: fixed;
+            height: 100vh;
             overflow-y: auto;
+            z-index: 1000;
+            transform: translateX(-260px);
         }
 
-        .cv-image {
-            width: 100%;
+            .sidebar.visible {
+                transform: translateX(0);
+            }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #666;
+        }
+
+        .logo {
+            width: 80px;
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-modal-close {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .toggle-button {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            background-color: #c4c4c4;
+            color: #333;
             border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            padding: 10px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        .btn-modal-close:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+            .toggle-button:hover {
+                background-color: #d4d4d4;
+            }
+
+            .toggle-button.shifted {
+                left: 280px;
+            }
+
+        .grade-section {
+            margin-bottom: 10px;
         }
 
-        .btn-close {
-            filter: invert(1);
+        .grade-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
         }
 
-        /* CV Modal - Larger size */
-        .modal-dialog-cv {
+            .grade-header:hover {
+                background-color: rgba(255,255,255,0.1);
+            }
+
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 12px;
+        }
+
+            .arrow.open {
+                transform: rotate(180deg);
+            }
+
+        .subject-list {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+            .subject-list.open {
+                max-height: 500px;
+            }
+
+            .subject-list li {
+                padding: 8px 0;
+                padding-left: 30px;
+                font-size: 14px;
+                border-left: 3px solid transparent;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+                .subject-list li:hover {
+                    border-left-color: #c62828;
+                    background-color: rgba(255,255,255,0.1);
+                }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+            z-index: 1;
+        }
+
+        .header-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+            .header-logo img {
+                width: 200px;
+                height: auto;
+                margin-bottom: 15px;
+            }
+
+            .header-logo h1 {
+                color: white;
+                font-size: 28px;
+                font-weight: 500;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            }
+
+        .grade-cards {
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 60px 80px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
             max-width: 900px;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .modal-dialog-cv {
-                max-width: 95%;
-            }
+        .grade-card {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 140px;
         }
 
-        @media (max-width: 480px) {
-            .header-section h1 {
-                font-size: 2rem;
+            .grade-card:hover {
+                transform: translateY(-10px);
             }
 
-            .header-section {
-                padding: 60px 0 40px;
+        .grade-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .grade-name {
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 850px;
+            width: 90%;
+        }
+
+            .modal-content h2 {
+                color: #333;
+                margin-bottom: 30px;
+                font-size: 24px;
             }
+
+        .major-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+            .major-buttons button {
+                background-color: #4a4a4a;
+                color: white;
+                border: none;
+                padding: 20px 30px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 16px;
+                font-weight: 500;
+                transition: all 0.3s;
+            }
+
+                .major-buttons button:hover {
+                    background-color: #c62828;
+                    transform: translateY(-2px);
+                }
+
+        .class-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+
+            .class-section.visible {
+                max-height: 600px;
+                opacity: 1;
+            }
+
+            .class-section h3 {
+                color: #333;
+                margin-bottom: 20px;
+                font-size: 20px;
+            }
+
+        .class-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .class-item {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            border-left: 4px solid #4a4a4a;
+        }
+
+            .class-item:hover {
+                background-color: #e0e0e0;
+                border-left-color: #c62828;
+                transform: translateX(5px);
+            }
+
+        .close-modal {
+            background-color: #e0e0e0;
+            color: #333;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+            .close-modal:hover {
+                background-color: #d0d0d0;
+            }
+
+        .links-modal {
+            max-width: 700px;
+            width: 90%;
+        }
+
+        .links-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            margin-bottom: 30px;
+        }
+
+            .links-header h2 {
+                margin: 0;
+                color: #333;
+                font-size: 22px;
+            }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .link-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+            .link-item:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            }
+
+        .link-item-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+        }
+
+        .link-item-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .link-item-description {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .link-item-icon {
+            font-size: 24px;
+        }
+
+        .no-links-message {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 16px;
+        }
+
+            .no-links-message p {
+                margin-bottom: 10px;
+            }
+
+        .no-links-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
-
 <body>
-    <!-- Animated Background -->
-    <div class="particles">
-        <div class="particle" style="width: 80px; height: 80px; left: 10%; top: 20%; animation-delay: 0s;"></div>
-        <div class="particle" style="width: 60px; height: 60px; left: 80%; top: 30%; animation-delay: 2s;"></div>
-        <div class="particle" style="width: 100px; height: 100px; left: 50%; top: 60%; animation-delay: 4s;"></div>
-        <div class="particle" style="width: 70px; height: 70px; left: 20%; top: 80%; animation-delay: 6s;"></div>
-        <div class="particle" style="width: 90px; height: 90px; left: 70%; top: 70%; animation-delay: 8s;"></div>
-    </div>
+    <button class="toggle-button" id="toggleBtn" onclick="toggleSidebar()">&gt;&gt;</button>
 
-    <!-- Header -->
-    <div class="header-section">
-        <h1><i class="fas fa-briefcase"></i> Projekt Portfólió</h1>
-        <p>Munkák Nyilvántartása & Teljesítmények</p>
-    </div>
+    <div class="sidebar" id="sidebar">
+        <div class="logo-container">
+            <img src="https://mateszalka-gepeszeti.cms.intezmeny.edir.hu/uploads/gepesz_alap_5d3a12540c.png" class="logo" alt="Gépészeti Logo">
+        </div>
 
-    <!-- CV Button -->
-    <div class="container-custom">
-        <div class="cv-button-container">
-            <button class="btn btn-cv" data-bs-toggle="modal" data-bs-target="#cvModal">
-                <i class="fas fa-file-alt"></i> CV Megtekintése
-            </button>
+        <div class="grade-section">
+            <div class="grade-header" onclick="toggleGrade(this)">
+                <span>Informatika</span>
+                <span class="arrow">▼</span>
+            </div>
+            <ul class="subject-list">
+                <li onclick="openSidebarGrade('Informatika', 9)">- 9. évfolyam</li>
+                <li onclick="openSidebarGrade('Informatika', 10)">- 10. évfolyam</li>
+                <li onclick="openSidebarGrade('Informatika', 11)">- 11. évfolyam</li>
+                <li onclick="openSidebarGrade('Informatika', 12)">- 12. évfolyam</li>
+            </ul>
+        </div>
+
+        <div class="grade-section">
+            <div class="grade-header" onclick="toggleGrade(this)">
+                <span>Gépész</span>
+                <span class="arrow">▼</span>
+            </div>
+            <ul class="subject-list">
+                <li onclick="openSidebarGrade('Gépész', 9)">- 9. évfolyam</li>
+                <li onclick="openSidebarGrade('Gépész', 10)">- 10. évfolyam</li>
+                <li onclick="openSidebarGrade('Gépész', 11)">- 11. évfolyam</li>
+                <li onclick="openSidebarGrade('Gépész', 12)">- 12. évfolyam</li>
+            </ul>
+        </div>
+
+        <div class="grade-section">
+            <div class="grade-header" onclick="toggleGrade(this)">
+                <span>Közgáz</span>
+                <span class="arrow">▼</span>
+            </div>
+            <ul class="subject-list">
+                <li onclick="openSidebarGrade('Közgáz', 9)">- 9. évfolyam</li>
+                <li onclick="openSidebarGrade('Közgáz', 10)">- 10. évfolyam</li>
+                <li onclick="openSidebarGrade('Közgáz', 11)">- 11. évfolyam</li>
+                <li onclick="openSidebarGrade('Közgáz', 12)">- 12. évfolyam</li>
+            </ul>
+        </div>
+
+        <div class="grade-section">
+            <div class="grade-header" onclick="toggleGrade(this)">
+                <span>Rendészet</span>
+                <span class="arrow">▼</span>
+            </div>
+            <ul class="subject-list">
+                <li onclick="openSidebarGrade('Rendészet', 9)">- 9. évfolyam</li>
+                <li onclick="openSidebarGrade('Rendészet', 10)">- 10. évfolyam</li>
+                <li onclick="openSidebarGrade('Rendészet', 11)">- 11. évfolyam</li>
+                <li onclick="openSidebarGrade('Rendészet', 12)">- 12. évfolyam</li>
+            </ul>
+        </div>
+
+        <div class="grade-section">
+            <div class="grade-header" onclick="toggleGrade(this)">
+                <span>Egészségügy</span>
+                <span class="arrow">▼</span>
+            </div>
+            <ul class="subject-list">
+                <li onclick="openSidebarGrade('Egészségügy', 9)">- 9. évfolyam</li>
+                <li onclick="openSidebarGrade('Egészségügy', 10)">- 10. évfolyam</li>
+                <li onclick="openSidebarGrade('Egészségügy', 11)">- 11. évfolyam</li>
+                <li onclick="openSidebarGrade('Egészségügy', 12)">- 12. évfolyam</li>
+            </ul>
         </div>
     </div>
 
-    <!-- CV Modal -->
-    <div class="modal fade" id="cvModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-cv">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"><i class="fas fa-file-alt"></i> Önéletrajz</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="kép/image_2026-01-09_160311129.png" alt="CV" class="cv-image">
-                    <p style="text-align: center; margin-top: 15px; color: #b0b8d4;">
-                        <small>Nagyításhoz kattintson az <a href="https://www.canva.com/design/DAGb_qhkidA/xKvqLqHWpaDfqE2RDEO-UQ/view" target="_blank" style="color: #8b5cf6; text-decoration: none;">eredeti linkre</a></small>
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-modal-close" data-bs-dismiss="modal">Bezárás</button>
-                </div>
+    <div class="main-content" id="mainContent">
+        <div class="header-logo">
+            <img src="https://mateszalka-gepeszeti.cms.intezmeny.edir.hu/uploads/gepesz_alap_5d3a12540c.png" alt="MSZC Logo">
+            <h1>MSZC Gépészeti Technikum - Digitális Tankönyvtár</h1>
+        </div>
+
+        <div class="grade-cards">
+            <div class="grade-card" onclick="openGrade(9)">
+                <div class="grade-icon">9</div>
+                <div class="grade-name">9. évfolyam</div>
+            </div>
+
+            <div class="grade-card" onclick="openGrade(10)">
+                <div class="grade-icon">10</div>
+                <div class="grade-name">10. évfolyam</div>
+            </div>
+
+            <div class="grade-card" onclick="openGrade(11)">
+                <div class="grade-icon">11</div>
+                <div class="grade-name">11. évfolyam</div>
+            </div>
+
+            <div class="grade-card" onclick="openGrade(12)">
+                <div class="grade-icon">12</div>
+                <div class="grade-name">12. évfolyam</div>
             </div>
         </div>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="container-custom">
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card" style="animation-delay: 0.1s;">
-                <img src="kép/kép_2025-01-12_224101449.png" alt="Projekt 1" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 1</span>
-                    <h3 class="project-title">Értékelő Táblázat</h3>
-                    <a href="https://docs.google.com/spreadsheets/d/1A8us__UwNZB8ZJbdZUMSvfi7tBkI86ZcIuWZpnLFqPI/edit?usp=sharing" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+    <div id="majorModal" class="modal">
+        <div class="modal-content">
+            <h2 id="majorModalTitle">Válassz szakot</h2>
+            <div class="major-buttons">
+                <button onclick="selectMajor('Informatika')">💻 Informatika</button>
+                <button onclick="selectMajor('Gépész')">⚙️ Gépész</button>
+                <button onclick="selectMajor('Közgáz')">📊 Közgáz</button>
+                <button onclick="selectMajor('Rendészet')">🛡️ Rendészet</button>
+                <button onclick="selectMajor('Egészségügy')">⚕️ Egészségügy</button>
             </div>
 
-            <!-- Project 2 -->
-            <div class="project-card" style="animation-delay: 0.2s;">
-                <img src="kép/kép_2025-01-12_224147785.png" alt="Projekt 2" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 2</span>
-                    <h3 class="project-title">Elégedettségi Kérdőív</h3>
-                    <a href="https://erdptr.github.io/El-gedetts-giK-rd-v/" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
+            <div id="classSection" class="class-section">
+                <h3>Válassz tantárgyat</h3>
+                <div id="classList" class="class-list"></div>
             </div>
 
-            <!-- Project 2.0 -->
-            <div class="project-card" style="animation-delay: 0.3s;">
-                <img src="kép/kép_2025-01-12_224147785.png" alt="Projekt 2.0" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 2.0</span>
-                    <h3 class="project-title">Elégedettségi Kérdőív + Új Design</h3>
-                    <a href="https://erdptr.github.io/Projekt3/" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
+            <button class="close-modal" onclick="closeMajorModal()">Bezárás</button>
+        </div>
+    </div>
 
-            <!-- Project 3 -->
-            <div class="project-card" style="animation-delay: 0.4s;">
-                <img src="https://png.pngtree.com/png-clipart/20241230/original/pngtree-playful-smiley-face-clipart-showcasing-a-happy-emoji-suitable-for-use-png-image_18320685.png" alt="Projekt 3" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 3</span>
-                    <h3 class="project-title">Ez a Weboldal</h3>
-                    <p style="color: #b0b8d4; margin-top: 10px;">Jelenleg itt tartózkodik</p>
-                </div>
+    <div id="linksModal" class="modal">
+        <div class="modal-content links-modal">
+            <div class="links-header">
+                <h2 id="linksTitle"></h2>
+                <button class="close-modal" onclick="closeLinksModal()">✕</button>
             </div>
-
-            <!-- Project 4 -->
-            <div class="project-card" style="animation-delay: 0.5s;">
-                <img src="kép/kép_2025-01-12_224229989.png" alt="Projekt 4" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 4</span>
-                    <h3 class="project-title">Canva Kurzus</h3>
-                    <a href="https://drive.google.com/drive/folders/1UZYMv15GD2EjFAjxrUNgi4Q34-x2YmsA" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card" style="animation-delay: 0.6s;">
-                <img src="kép/kép_2025-01-12_224431066.png" alt="Projekt 5" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 5</span>
-                    <h3 class="project-title">Dolgozat Értékelő App</h3>
-                    <a href="https://drive.google.com/drive/folders/1v2FKMHO5aXJYX1W2893VCGyDVJEKKr3C" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card" style="animation-delay: 0.7s;">
-                <img src="kép/image_2025-01-28_230836079.png" alt="Projekt 6" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 6</span>
-                    <h3 class="project-title">MEMA</h3>
-                    <a href="https://erdptr.github.io/Proj6/" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 7 -->
-            <div class="project-card" style="animation-delay: 0.8s;">
-                <img src="kép/image_2026-01-04_192812552.png" alt="Projekt 7" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 7</span>
-                    <h3 class="project-title">Rendezvénynaptár</h3>
-                    <a href="https://drive.google.com/drive/folders/1Jowk2V3jLNL73lWnOXNsuVXfWsDrwjBZ?usp=sharing" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 8 -->
-            <div class="project-card" style="animation-delay: 0.9s;">
-                <img src="kép/image_2026-01-04_191855634.png" alt="Projekt 8" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 8</span>
-                    <h3 class="project-title">AI Eszközök (Gamma) Bemutatás</h3>
-                    <a href="https://gamma.app/docs/y5s9pb0kqgv50cn?follow_on_start=true&following_id=doqyu9wtbxzludt" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 9 -->
-            <div class="project-card" style="animation-delay: 1s;">
-                <img src="kép/image_2026-01-04_191801154.png" alt="Projekt 9" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 9</span>
-                    <h3 class="project-title">Előadás - Monitoring és Ellenőrzés</h3>
-                    <a href="https://gamma.app/docs/Monitoring-es-ellenorzes-Hogyan-merheto-egy-IT-projekt-elorehalad-so72lw4is3b5wt1?authuser=0&follow_on_start=true&following_id=doqyu9wtbxzludt&mode=doc" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Project 10 -->
-            <div class="project-card" style="animation-delay: 1.1s;">
-                <img src="kép/image_2026-01-04_191641130.png" alt="Projekt 10" class="card-image">
-                <div class="card-content">
-                    <span class="project-number">Projekt 10</span>
-                    <h3 class="project-title">Digitális Tankönyvtár</h3>
-                    <a href="https://erdptr.github.io/Proj11/" target="_blank" class="project-link">
-                        Megtekintés <i class="fas fa-arrow-right"></i>
-                    </a>
+            <div class="links-container" id="linksContainer">
+                <div class="no-links-message">
+                    <div class="no-links-icon">📚</div>
+                    <p>Még nincsenek linkek ehhez a tantárgyhoz</p>
+                    <p style="font-size: 14px; color: #999;">Hamarosan elérhető lesz!</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentGrade = null;
+        let currentMajor = null;
+
+        // Subject data structure - subjects available for each major
+        const subjectData = {
+            'Informatika': ['Matematika', 'Magyar nyelv', 'Irodalom', 'Angol/Német nyelv', 'Történelem', 'Állampolgári ismeretek', 'Informatika', 'Programozás'],
+            'Gépész': ['Matematika', 'Magyar nyelv', 'Irodalom', 'Angol/Német nyelv', 'Történelem', 'Állampolgári ismeretek', 'Fizika', 'Gépészeti alapismeretek', 'Műszaki rajz'],
+            'Közgáz': ['Matematika', 'Magyar nyelv', 'Irodalom', 'Angol/Német nyelv', 'Történelem', 'Állampolgári ismeretek', 'Közgazdaságtan', 'Üzleti ismeretek'],
+            'Rendészet': ['Matematika', 'Magyar nyelv', 'Irodalom', 'Angol/Német nyelv', 'Történelem', 'Állampolgári ismeretek', 'Jog', 'Rendészeti ismeretek', 'Testnevelés'],
+            'Egészségügy': ['Matematika', 'Magyar nyelv', 'Irodalom', 'Angol/Német nyelv', 'Történelem', 'Állampolgári ismeretek', 'Biológia', 'Egészségügyi ismeretek', 'Anatómia']
+        };
+
+        // Links data structure - placeholder for future PDF links
+        const linksData = {
+            // Matematika 12th grade for all majors
+            'Matematika_12_Informatika': [
+                { title: 'Matematika 12. évfolyam - Teljes tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MAT12TA__teljes.pdf', description: 'Emelt szintű matematika tankönyv' }
+            ],
+            'Matematika_12_Gépész': [
+                { title: 'Matematika 12. évfolyam - Teljes tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MAT12TA__teljes.pdf', description: 'Emelt szintű matematika tankönyv' }
+            ],
+            'Matematika_12_Közgáz': [
+                { title: 'Matematika 12. évfolyam - Teljes tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MAT12TA__teljes.pdf', description: 'Emelt szintű matematika tankönyv' }
+            ],
+            'Matematika_12_Rendészet': [
+                { title: 'Matematika 12. évfolyam - Teljes tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MAT12TA__teljes.pdf', description: 'Emelt szintű matematika tankönyv' }
+            ],
+            'Matematika_12_Egészségügy': [
+                { title: 'Matematika 12. évfolyam - Teljes tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MAT12TA__teljes.pdf', description: 'Emelt szintű matematika tankönyv' }
+            ],
+            // Irodalom 12th grade for all majors
+            'Irodalom_12_Informatika': [
+                { title: 'Irodalom 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12TB__teljes.pdf', description: 'Magyar irodalom tankönyv' },
+                { title: 'Irodalom 12. évfolyam - Szöveggyűjtemény', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12SZ__teljes.pdf', description: 'Magyar irodalom szöveggyűjtemény' }
+            ],
+            'Irodalom_12_Gépész': [
+                { title: 'Irodalom 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12TB__teljes.pdf', description: 'Magyar irodalom tankönyv' },
+                { title: 'Irodalom 12. évfolyam - Szöveggyűjtemény', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12SZ__teljes.pdf', description: 'Magyar irodalom szöveggyűjtemény' }
+            ],
+            'Irodalom_12_Közgáz': [
+                { title: 'Irodalom 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12TB__teljes.pdf', description: 'Magyar irodalom tankönyv' },
+                { title: 'Irodalom 12. évfolyam - Szöveggyűjtemény', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12SZ__teljes.pdf', description: 'Magyar irodalom szöveggyűjtemény' }
+            ],
+            'Irodalom_12_Rendészet': [
+                { title: 'Irodalom 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12TB__teljes.pdf', description: 'Magyar irodalom tankönyv' },
+                { title: 'Irodalom 12. évfolyam - Szöveggyűjtemény', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12SZ__teljes.pdf', description: 'Magyar irodalom szöveggyűjtemény' }
+            ],
+            'Irodalom_12_Egészségügy': [
+                { title: 'Irodalom 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12TB__teljes.pdf', description: 'Magyar irodalom tankönyv' },
+                { title: 'Irodalom 12. évfolyam - Szöveggyűjtemény', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-MIR12SZ__teljes.pdf', description: 'Magyar irodalom szöveggyűjtemény' }
+            ],
+            // Történelem 12th grade for all majors
+            'Történelem_12_Informatika': [
+                { title: 'Történelem 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR12TB__teljes.pdf', description: 'Történelem tankönyv' },
+                { title: 'Történelem 9-12. évfolyam - Atlasz', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR912ATL__teljes.pdf', description: 'Történelmi atlasz' }
+            ],
+            'Történelem_12_Gépész': [
+                { title: 'Történelem 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR12TB__teljes.pdf', description: 'Történelem tankönyv' },
+                { title: 'Történelem 9-12. évfolyam - Atlasz', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR912ATL__teljes.pdf', description: 'Történelmi atlasz' }
+            ],
+            'Történelem_12_Közgáz': [
+                { title: 'Történelem 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR12TB__teljes.pdf', description: 'Történelem tankönyv' },
+                { title: 'Történelem 9-12. évfolyam - Atlasz', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR912ATL__teljes.pdf', description: 'Történelmi atlasz' }
+            ],
+            'Történelem_12_Rendészet': [
+                { title: 'Történelem 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR12TB__teljes.pdf', description: 'Történelem tankönyv' },
+                { title: 'Történelem 9-12. évfolyam - Atlasz', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR912ATL__teljes.pdf', description: 'Történelmi atlasz' }
+            ],
+            'Történelem_12_Egészségügy': [
+                { title: 'Történelem 12. évfolyam - Tankönyv', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR12TB__teljes.pdf', description: 'Történelem tankönyv' },
+                { title: 'Történelem 9-12. évfolyam - Atlasz', url: 'https://www.tankonyvkatalogus.hu/storage/pdf/OH-TOR912ATL__teljes.pdf', description: 'Történelmi atlasz' }
+            ],
+            // Állampolgári ismeretek 12th grade for all majors
+            'Állampolgári ismeretek_12_Informatika': [
+                { title: 'Állampolgári ismeretek 12. évfolyam', url: 'https://www.tankonyvkatalogus.hu/tankonyv/OH-ALP12TA', description: 'Állampolgári ismeretek tankönyv' }
+            ],
+            'Állampolgári ismeretek_12_Gépész': [
+                { title: 'Állampolgári ismeretek 12. évfolyam', url: 'https://www.tankonyvkatalogus.hu/tankonyv/OH-ALP12TA', description: 'Állampolgári ismeretek tankönyv' }
+            ],
+            'Állampolgári ismeretek_12_Közgáz': [
+                { title: 'Állampolgári ismeretek 12. évfolyam', url: 'https://www.tankonyvkatalogus.hu/tankonyv/OH-ALP12TA', description: 'Állampolgári ismeretek tankönyv' }
+            ],
+            'Állampolgári ismeretek_12_Rendészet': [
+                { title: 'Állampolgári ismeretek 12. évfolyam', url: 'https://www.tankonyvkatalogus.hu/tankonyv/OH-ALP12TA', description: 'Állampolgári ismeretek tankönyv' }
+            ],
+            'Állampolgári ismeretek_12_Egészségügy': [
+                { title: 'Állampolgári ismeretek 12. évfolyam', url: 'https://www.tankonyvkatalogus.hu/tankonyv/OH-ALP12TA', description: 'Állampolgári ismeretek tankönyv' }
+            ],
+            
+    };
+
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        sidebar.classList.toggle('visible');
+        toggleBtn.classList.toggle('shifted');
+
+        if (sidebar.classList.contains('visible')) {
+            toggleBtn.innerHTML = '&lt;&lt;';
+        } else {
+            toggleBtn.innerHTML = '&gt;&gt;';
+        }
+    }
+
+    function toggleGrade(element) {
+        const subjectList = element.nextElementSibling;
+        const arrow = element.querySelector('.arrow');
+
+        subjectList.classList.toggle('open');
+        arrow.classList.toggle('open');
+    }
+
+    function openGrade(grade) {
+        currentGrade = grade;
+        document.getElementById('majorModalTitle').textContent = `Válassz szakot - ${grade}. évfolyam`;
+        document.getElementById('majorModal').style.display = 'flex';
+        document.getElementById('classSection').classList.remove('visible');
+        document.querySelector('.major-buttons').style.display = 'grid';
+    }
+
+    function selectMajor(major) {
+        currentMajor = major;
+        const classList = document.getElementById('classList');
+        const classSection = document.getElementById('classSection');
+
+        classList.innerHTML = '';
+
+        const subjects = subjectData[major];
+        subjects.forEach(subject => {
+            const classItem = document.createElement('div');
+            classItem.className = 'class-item';
+            classItem.textContent = subject;
+            classItem.onclick = () => openLinks(subject, currentGrade, major);
+            classList.appendChild(classItem);
+        });
+
+        classSection.classList.add('visible');
+    }
+
+    function closeMajorModal() {
+        document.getElementById('majorModal').style.display = 'none';
+        document.getElementById('classSection').classList.remove('visible');
+        currentGrade = null;
+        currentMajor = null;
+    }
+
+    function openSidebarGrade(major, grade) {
+        currentGrade = grade;
+        currentMajor = major;
+        document.getElementById('majorModalTitle').textContent = `${major} - ${grade}. évfolyam - Válassz tantárgyat`;
+
+        const classList = document.getElementById('classList');
+        const classSection = document.getElementById('classSection');
+
+        classList.innerHTML = '';
+
+        const subjects = subjectData[major];
+        subjects.forEach(subject => {
+            const classItem = document.createElement('div');
+            classItem.className = 'class-item';
+            classItem.textContent = subject;
+            classItem.onclick = () => openLinks(subject, grade, major);
+            classList.appendChild(classItem);
+        });
+
+        classSection.classList.add('visible');
+        document.getElementById('majorModal').style.display = 'flex';
+
+        // Hide major selection buttons since we came from sidebar
+        document.querySelector('.major-buttons').style.display = 'none';
+    }
+
+    function openLinks(subject, year, major) {
+        closeMajorModal();
+
+        const displayText = `${subject} - ${year}. évfolyam (${major})`;
+        document.getElementById('linksTitle').textContent = displayText;
+
+        const linksContainer = document.getElementById('linksContainer');
+        linksContainer.innerHTML = '';
+
+        // Create a unique key for this combination
+        const linksKey = `${subject}_${year}_${major}`;
+        const links = linksData[linksKey];
+
+        if (links && links.length > 0) {
+            // If links exist, display them
+            links.forEach(link => {
+                const linkItem = document.createElement('a');
+                linkItem.className = 'link-item';
+                linkItem.href = link.url;
+                linkItem.target = '_blank';
+
+                linkItem.innerHTML = `
+                        <div class="link-item-content">
+                            <div class="link-item-title">${link.title}</div>
+                            <div class="link-item-description">${link.description}</div>
+                        </div>
+                        <div class="link-item-icon">📄</div>
+                    `;
+
+                linksContainer.appendChild(linkItem);
+            });
+        } else {
+            // If no links, show placeholder message
+            linksContainer.innerHTML = `
+                    <div class="no-links-message">
+                        <div class="no-links-icon">📚</div>
+                        <p>Még nincsenek linkek ehhez a tantárgyhoz</p>
+                        <p style="font-size: 14px; color: #999;">Hamarosan elérhető lesz!</p>
+                    </div>
+                `;
+        }
+
+        document.getElementById('linksModal').style.display = 'flex';
+    }
+
+    function closeLinksModal() {
+        document.getElementById('linksModal').style.display = 'none';
+    }
+
+    // Escape key to close modals
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeMajorModal();
+            closeLinksModal();
+        }
+    });
+    </script>
 </body>
 </html>
-
